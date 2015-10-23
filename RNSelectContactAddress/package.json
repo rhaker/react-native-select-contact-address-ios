@@ -1,0 +1,31 @@
+{
+  "name": "react-native-select-contact-address-ios",
+  "version": "0.1.0",
+  "description": "A react-native interface for selecting a contact and returning an address. Uses async promises (ios8 or higher only).",
+  "main": "index.ios.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-component",
+    "react-native",
+    "ios",
+    "contact",
+    "addressbook",
+    "address"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "github.com:rhaker/react-native-select-contact-address-ios.git"
+  },
+  "author": "rhaker <email@example.com> (http://github.com/rhaker)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rhaker/react-native-select-contact-address-ios/issues"
+  },
+  "homepage": "https://github.com/rhaker/react-native-select-contact-address-ios",
+  "dependencies": {
+    "react-native": "^0.12.0"
+  },
+  "devDependencies": {}
+}
