@@ -47,6 +47,14 @@ The following will cause an error callback (use the console.log to see the speci
 
 1) Ios8 or higher is not being used
 
+# Known Issues
+
+Running in the simulator (especially on first install) sometimes causes an irreproducible crash before the Contacts Picker even appears.
+
+This issue is described here: http://stackoverflow.com/questions/28592891/error-when-try-to-open-contacts
+
+Try rebuilding the app if this occurs.
+
 # Acknowledgements
 
 Special thanks to James Ide for his post on async modules. Special thanks to spikef for his react-native-phone-picker. Thanks to Brent Vatne for his posts on creating a react native packager. Some portions of this code have been based on answers from stackoverflow. This package also owes a special thanks to the tutorial by Jay Garcia at Modus Create on how to create a custom react native module.
