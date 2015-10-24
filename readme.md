@@ -55,6 +55,8 @@ This issue is described here: http://stackoverflow.com/questions/28592891/error-
 
 Try rebuilding the app if this occurs.
 
+This module needs to be updated to support the new ios9 Contacts framework.
+
 # Acknowledgements
 
 Special thanks to James Ide for his post on async modules. Special thanks to spikef for his react-native-phone-picker. Thanks to Brent Vatne for his posts on creating a react native packager. Some portions of this code have been based on answers from stackoverflow. This package also owes a special thanks to the tutorial by Jay Garcia at Modus Create on how to create a custom react native module.
