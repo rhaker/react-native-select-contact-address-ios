@@ -39,13 +39,14 @@ async _selectAddress() {
 
 # Additional Notes
 
-The address will be resolved even if it does not exist, so you should check for the case where value is null or empty.
+The address will be resolved even if it does not exist, so you should check for the case where value is null, empty, or undefined.
 
 # Error Callback
 
 The following will cause an error callback (use the console.log to see the specific message):
 
 1) Ios8 or higher is not being used
+2) User denies access to the addressbook
 
 # Known Issues
 

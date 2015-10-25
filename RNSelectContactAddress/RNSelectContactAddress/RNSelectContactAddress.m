@@ -25,7 +25,7 @@ RCT_EXPORT_METHOD(selectAddress:(BOOL *)boolType
     // set up an error message
     NSError *error = [
                       NSError errorWithDomain:@"some_domain"
-                      code:100
+                      code:200
                       userInfo:@{
                                  NSLocalizedDescriptionKey:@"ios8 or higher required"
                                  }];
@@ -42,14 +42,63 @@ RCT_EXPORT_METHOD(selectAddress:(BOOL *)boolType
         
     } else {
         
-        ABPeoplePickerNavigationController *picker;
-        picker = [[ABPeoplePickerNavigationController alloc] init];
-        picker.peoplePickerDelegate = self;
-        
-        UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-        [vc presentViewController:picker animated:YES completion:nil];
+        // check permissions
+        if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied ||
+            ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusRestricted){
+            
+            // permission denied
+            error = [
+                     NSError errorWithDomain:@"some_domain"
+                     code:300
+                     userInfo:@{
+                                NSLocalizedDescriptionKey:@"Permissions denied by user."
+                                }];
+            
+            reject(error);
+            
+        } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized){
+            
+            // permission authorized
+            ABPeoplePickerNavigationController *picker;
+            picker = [[ABPeoplePickerNavigationController alloc] init];
+            picker.peoplePickerDelegate = self;
+            
+            UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+            [vc presentViewController:picker animated:YES completion:nil];
+            
+        } else {
+            
+            // not determined - request permissions
+            ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
+                
+                if (!granted){
+                    
+                    // user denied access
+                    NSError *errorDenied = [
+                                            NSError errorWithDomain:@"some_domain"
+                                            code:300
+                                            userInfo:@{
+                                                       NSLocalizedDescriptionKey:@"Permissions denied by user."
+                                                       }];
+                    
+                    reject(errorDenied);
+                    return;
+                }
+                
+                // user authorized access
+                ABPeoplePickerNavigationController *picker;
+                picker = [[ABPeoplePickerNavigationController alloc] init];
+                picker.peoplePickerDelegate = self;
+                
+                UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+                [vc presentViewController:picker animated:YES completion:nil];
+                
+            });
+            
+        }
         
     }
+    
     
 }
 

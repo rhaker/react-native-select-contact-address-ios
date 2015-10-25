@@ -1,6 +1,6 @@
 {
   "name": "react-native-select-contact-address-ios",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A react-native interface for selecting a contact and returning an address. Uses async promises (ios8 or higher only).",
   "main": "index.ios.js",
   "scripts": {
